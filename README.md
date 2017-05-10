@@ -3,7 +3,7 @@
     - Spring+SpringMVC+Mybatis+jetty
     - 数据库使用mysql
     - 使用标准MVC模式
-    - 使用resetful风格定义对外接口
+    - 使用restful风格定义对外接口
     
 ## 数据库表定义
     - table:    charts
@@ -48,12 +48,12 @@
         ]
     }
     
-## reset api定义
+## restful api定义
     - 获取图表
-      GET $REST_URL/kiki/{type}/chart?title=xxx
+      GET $REST_URL/kiki/chart/{type}?title=xxx
     
     - 新建图表
-      POST $REST_URL/kiki/{type}/chart
+      POST $REST_URL/kiki/chart/{type}
         requestBody: 
         {
             "title":"",
@@ -64,7 +64,7 @@
         }
        
     - 修改图表    
-      PUT $REST_URL/kiki/{type}/chart
+      PUT $REST_URL/kiki/chart/{type}
         requestBody: 
         {
             "title":"",
@@ -75,4 +75,4 @@
         } 
     
     - 删除图表
-      DELETE $REST_URL/kiki/{type}/chart?title=xxx
+      DELETE $REST_URL/kiki/chart/{type}?title=xxx
