@@ -1,0 +1,13 @@
+# ignore idea project file
+*.ipr
+*.iml
+*.iws
+*.log
+*.class
+*.idea
+*.versionsBackup
+*.DS_Store
+
+data/*
+release/*
+target/*

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kiki.chart.dao.ChartsMapper">
+  <resultMap id="BaseResultMap" type="com.kiki.chart.model.Charts">
+    <id column="title" jdbcType="VARCHAR" property="title" />
+    <result column="background_color" jdbcType="VARCHAR" property="backgroundColor" />
+    <result column="scale_text_color" jdbcType="VARCHAR" property="scaleTextColor" />
+    <result column="value_text_color" jdbcType="VARCHAR" property="valueTextColor" />
+    <result column="chart_data" typeHandler="com.kiki.chart.common.typeHandler.JsonTypeHandler"
+            javaType="com.kiki.chart.common.pojo.ChartData" jdbcType="VARCHAR" property="chartData" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    title, background_color, scale_text_color, value_text_color, chart_data, type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from charts
+    where title = #{title,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from charts
+    where title = #{title,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.kiki.chart.model.Charts">
+    insert into charts (title, background_color, scale_text_color,
+    value_text_color, chart_data, type
+    )
+    values (#{title,jdbcType=VARCHAR}, #{backgroundColor,jdbcType=VARCHAR}, #{scaleTextColor,jdbcType=VARCHAR},
+    #{valueTextColor,jdbcType=VARCHAR}, #{chartData,typeHandler=com.kiki.chart.common.typeHandler.JsonTypeHandler}, #{type,jdbcType=VARCHAR}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.kiki.chart.model.Charts">
+    insert into charts
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        title,
+      </if>
+      <if test="backgroundColor != null">
+        background_color,
+      </if>
+      <if test="scaleTextColor != null">
+        scale_text_color,
+      </if>
+      <if test="valueTextColor != null">
+        value_text_color,
+      </if>
+      <if test="chartData != null">
+        chart_data,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="backgroundColor != null">
+        #{backgroundColor,jdbcType=VARCHAR},
+      </if>
+      <if test="scaleTextColor != null">
+        #{scaleTextColor,jdbcType=VARCHAR},
+      </if>
+      <if test="valueTextColor != null">
+        #{valueTextColor,jdbcType=VARCHAR},
+      </if>
+      <if test="chartData != null">
+        #{chartData,typeHandler=com.kiki.chart.common.typeHandler.JsonTypeHandler},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.kiki.chart.model.Charts">
+    update charts
+    <set>
+      <if test="backgroundColor != null">
+        background_color = #{backgroundColor,jdbcType=VARCHAR},
+      </if>
+      <if test="scaleTextColor != null">
+        scale_text_color = #{scaleTextColor,jdbcType=VARCHAR},
+      </if>
+      <if test="valueTextColor != null">
+        value_text_color = #{valueTextColor,jdbcType=VARCHAR},
+      </if>
+      <if test="chartData != null">
+        chart_data = #{chartData,typeHandler=com.kiki.chart.common.typeHandler.JsonTypeHandler},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where title = #{title,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.kiki.chart.model.Charts">
+    update charts
+    set background_color = #{backgroundColor,jdbcType=VARCHAR},
+      scale_text_color = #{scaleTextColor,jdbcType=VARCHAR},
+      value_text_color = #{valueTextColor,jdbcType=VARCHAR},
+      chart_data = #{chartData,typeHandler=com.kiki.chart.common.typeHandler.JsonTypeHandler},
+      type = #{type,jdbcType=VARCHAR}
+    where title = #{title,jdbcType=VARCHAR}
+  </update>
+</mapper>
