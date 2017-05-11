@@ -7,8 +7,8 @@
     
 ## 数据库表定义
     - table:    charts
-    | id     | title | background_color | scale_text_color | value_text_color | chart_data | type |
-    | -----: | -----:| ----------------:| ----------------:| ----------------:| ----------:| ----:|
+    | title | background_color | scale_text_color | value_text_color | chart_data | type |
+    | -----:| ----------------:| ----------------:| ----------------:| ----------:| ----:|
 
 ## 数据结构定义
     - chart_data(JSON)
